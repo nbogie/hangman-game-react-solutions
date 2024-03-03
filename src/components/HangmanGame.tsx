@@ -44,27 +44,24 @@ export function HangmanGame() {
     return (
         <div className="hangmanGame">
             <h1>Hangman Game</h1>
-            <>
-                <LettersDisplay lettersOrNulls={lettersToDisplay} />
 
-                {winState === "loss" && (
-                    <>
-                        <div>You lose! Too many misses.</div>
-                        <LettersDisplay
-                            lettersOrNulls={wordToGuess.split("")}
-                        />
-                    </>
-                )}
+            <LettersDisplay lettersOrNulls={lettersToDisplay} />
 
-                {winState === "win" && <div>You win!</div>}
+            {winState === "loss" && (
+                <>
+                    <div>You lose! Too many misses.</div>
+                    <LettersDisplay lettersOrNulls={wordToGuess.split("")} />
+                </>
+            )}
 
-                <div>Number of misses: {countOfMisses}</div>
+            {winState === "win" && <div>You win!</div>}
 
-                <LetterButtons
-                    guessedLetters={guessedLetters}
-                    handleClickButton={guessLetter}
-                />
-            </>
+            <div>Number of misses: {countOfMisses}</div>
+
+            <LetterButtons
+                guessedLetters={guessedLetters}
+                handleClickButton={guessLetter}
+            />
 
             {winState !== "in-play" && (
                 <StartNewGameButton onClick={startGame} />
