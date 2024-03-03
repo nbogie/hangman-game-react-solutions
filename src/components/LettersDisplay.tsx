@@ -6,58 +6,44 @@ export function LettersDisplay({
     lettersOrNulls: (null | string)[];
 }) {
     const lettersOrSpaces = lettersOrNulls.map((l) => (l === null ? "_" : l));
-    const animVariantsForContainer = {
-        smaller: {
-            scale: 0.8,
-            transition: {
-                staggerChildren: 0.3, // Delay between each child animation
-            },
-        },
-        normal: {
-            scale: 1,
-            transition: {
-                staggerChildren: 0.3, // Delay between each child animation
-            },
-        },
-    };
 
-    const itemVariants = {
-        smaller: { scale: 0.8 },
-        normal: { scale: 1 },
+    const containerVariants = {
+        visible: {
+            opacity: 1,
+            //TODO: newly mounted children components are not attending to this stagger
+            transition: {
+                staggerChildren: 0.1, // Delay between each child animation
+            },
+        },
+        hidden: { opacity: 0 },
     };
 
     return (
         <motion.div
             className="lettersOrSpaces"
-            variants={animVariantsForContainer}
-            initial={"smaller"}
-            animate={"normal"}
+            variants={containerVariants}
+            initial={"hidden"}
+            animate={"visible"}
         >
             {lettersOrSpaces.map((l, ix) => (
-                <LetterOrSpace
-                    key={l + "_at_" + ix}
-                    variants={itemVariants}
-                    letterOrSpace={l}
-                />
+                // key needs to change when letter becomes non-null, and should be distinct per occurrence
+                <LetterOrSpace key={l + "_at_" + ix} letterOrSpace={l} />
             ))}
         </motion.div>
     );
 }
 
-function LetterOrSpace({
+export function LetterOrSpace({
     letterOrSpace,
-    variants,
 }: {
-    variants: Record<string, object>;
     letterOrSpace: string | null;
 }) {
+    const itemVariants = {
+        visible: { opacity: 1, y: 0 },
+        hidden: { opacity: 0, y: -100 },
+    };
     return (
-        <motion.div
-            variants={variants}
-            initial={"smaller"}
-            animate={"normal"}
-            className="letterOrSpace"
-        >
+        <motion.div variants={itemVariants} className="letterOrSpace">
             {letterOrSpace}
         </motion.div>
     );
