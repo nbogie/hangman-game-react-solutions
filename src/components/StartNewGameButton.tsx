@@ -15,7 +15,7 @@ export function StartNewGameButton({
         setNumLetters((p) => clamp(p - 1, 3, 9));
     }
     return (
-        <div>
+        <div className={"newGameControlRow"}>
             <button
                 className="gameSelectButton"
                 onClick={() => onClick(numLetters)}
