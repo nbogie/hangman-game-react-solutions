@@ -5,9 +5,11 @@ export function LetterButtons({
     guessedLetters: string[];
     handleClickButton: (letter: string) => void;
 }) {
+    const alphabet = "abcdefghijklmnopqrstuvwxyz".split("");
+
     return (
         <div className="letterButtons">
-            {"abcdefghijklmnopqrstuvwxyz".split("").map((letter) => (
+            {alphabet.map((letter) => (
                 <button
                     className="letterButton"
                     disabled={guessedLetters.includes(letter)}
