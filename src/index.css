@@ -98,9 +98,14 @@ body {
     gap: 2rem;
 }
 
-.letters {
+.lettersOrSpaces {
     font-size: 3rem;
     margin-bottom: 2rem;
+    display: flex;
+    gap: 1rem;
+}
+.letterOrSpace {
+    width: 1.5rem;
 }
 
 .letterButtons {
