@@ -1,3 +1,5 @@
+import { motion } from "framer-motion";
+
 export function LetterButtons({
     guessedLetters,
     handleClickButton,
@@ -5,17 +7,19 @@ export function LetterButtons({
     guessedLetters: string[];
     handleClickButton: (letter: string) => void;
 }) {
+    const alphabet = "abcdefghijklmnopqrstuvwxyz".split("");
     return (
         <div className="letterButtons">
-            {"abcdefghijklmnopqrstuvwxyz".split("").map((letter) => (
-                <button
-                    className="letterButton"
-                    disabled={guessedLetters.includes(letter)}
-                    onClick={() => handleClickButton(letter)}
+            {alphabet.map((letter) => (
+                <motion.button
                     key={letter}
+                    className="letterButton"
+                    onClick={() => handleClickButton(letter)}
+                    whileTap={{ scale: 0.9 }}
+                    disabled={guessedLetters.includes(letter)}
                 >
                     {letter}
-                </button>
+                </motion.button>
             ))}
         </div>
     );

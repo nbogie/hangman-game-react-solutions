@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { useState } from "react";
 
 export function StartNewGameButton({
@@ -8,29 +9,38 @@ export function StartNewGameButton({
     const [numLetters, setNumLetters] = useState(8);
 
     function inc() {
-        setNumLetters((p) => constrain(p + 1, 3, 13));
+        setNumLetters((p) => constrain(p + 1, 3, 9));
     }
     function dec() {
-        setNumLetters((p) => constrain(p - 1, 3, 13));
+        setNumLetters((p) => constrain(p - 1, 3, 9));
     }
     return (
         <div>
-            <button
+            <motion.button
                 className="gameSelectButton"
                 onClick={() => onClick(numLetters)}
+                whileTap={{ scale: 0.9 }}
             >
                 New Game
-            </button>
+            </motion.button>
             with
-            <button className="gameSelectButton" onClick={dec}>
+            <motion.button
+                className="gameSelectButton"
+                onClick={dec}
+                whileTap={{ scale: 0.9 }}
+            >
                 {" "}
                 -{" "}
-            </button>
+            </motion.button>
             <span>{numLetters} letters</span>
-            <button className="gameSelectButton" onClick={inc}>
+            <motion.button
+                className="gameSelectButton"
+                onClick={inc}
+                whileTap={{ scale: 0.9 }}
+            >
                 {" "}
                 +{" "}
-            </button>
+            </motion.button>
         </div>
     );
 }
