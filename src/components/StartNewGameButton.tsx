@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { clamp } from "lodash";
+import { animVariants } from "./animVariants";
 export function StartNewGameButton({
     onClick,
 }: {
@@ -16,16 +17,10 @@ export function StartNewGameButton({
         setNumLetters((p) => clamp(p + 1, 3, 9));
     }
 
-    const variants = {
-        visible: { opacity: 1 },
-        hidden: { opacity: 0 },
-        shrinking: { scale: 0.8 },
-    };
-
     return (
         <div>
             <motion.button
-                variants={variants}
+                variants={animVariants}
                 className="gameSelectButton"
                 onClick={() => onClick(numLetters)}
                 whileTap={"shrinking"}
@@ -34,23 +29,21 @@ export function StartNewGameButton({
             </motion.button>
             with
             <motion.button
-                variants={variants}
+                variants={animVariants}
                 className="gameSelectButton"
                 onClick={dec}
                 whileTap={"shrinking"}
             >
-                {" "}
-                -{" "}
+                -
             </motion.button>
             <span>{numLetters} letters</span>
             <motion.button
-                variants={variants}
+                variants={animVariants}
                 className="gameSelectButton"
                 onClick={inc}
                 whileTap={"shrinking"}
             >
-                {" "}
-                +{" "}
+                +
             </motion.button>
         </div>
     );
