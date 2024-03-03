@@ -18,7 +18,7 @@ export function StartNewGameButton({
     }
 
     return (
-        <div>
+        <div className={"newGameControlRow"}>
             <motion.button
                 variants={animVariants}
                 className="gameSelectButton"

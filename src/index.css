@@ -145,3 +145,10 @@ body {
 .gameSelectButton:hover {
     border-color: var(--palette4);
 }
+
+.newGameControlRow {
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+    justify-content: center;
+}
