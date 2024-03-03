@@ -13,6 +13,7 @@ export function LetterButtons({
             {alphabet.map((letter) => (
                 <LetterButton
                     {...{
+                        key: letter,
                         letter,
                         handleClickButton,
                         isDisabled: guessedLetters.includes(letter),
