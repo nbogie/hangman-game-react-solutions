@@ -8,10 +8,10 @@ export function StartNewGameButton({
     const [numLetters, setNumLetters] = useState(8);
 
     function inc() {
-        setNumLetters((p) => constrain(p + 1, 3, 13));
+        setNumLetters((p) => constrain(p + 1, 3, 9));
     }
     function dec() {
-        setNumLetters((p) => constrain(p - 1, 3, 13));
+        setNumLetters((p) => constrain(p + 1, 3, 9));
     }
     return (
         <div>
