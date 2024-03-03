@@ -1,3 +1,4 @@
+import { clamp } from "lodash";
 import { useState } from "react";
 
 export function StartNewGameButton({
@@ -8,10 +9,10 @@ export function StartNewGameButton({
     const [numLetters, setNumLetters] = useState(8);
 
     function inc() {
-        setNumLetters((p) => constrain(p + 1, 3, 9));
+        setNumLetters((p) => clamp(p + 1, 3, 9));
     }
     function dec() {
-        setNumLetters((p) => constrain(p + 1, 3, 9));
+        setNumLetters((p) => clamp(p - 1, 3, 9));
     }
     return (
         <div>
@@ -33,8 +34,4 @@ export function StartNewGameButton({
             </button>
         </div>
     );
-}
-
-function constrain(inputNum: number, min: number, max: number) {
-    return Math.min(max, Math.max(min, inputNum));
 }
