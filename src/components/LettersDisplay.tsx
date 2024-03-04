@@ -27,9 +27,8 @@ export function LetterOrSpace({
         visible: (custom: number) => ({
             y: 0,
             opacity: 1,
-            //TODO: newly mounted children components are not attending to this stagger
             transition: {
-                delay: custom, // Delay between each child animation
+                delay: custom,
             },
         }),
     };
