@@ -7,24 +7,8 @@ export function LettersDisplay({
 }) {
     const lettersOrSpaces = lettersOrNulls.map((l) => (l === null ? "_" : l));
 
-    const containerVariants = {
-        visible: {
-            opacity: 1,
-            //TODO: newly mounted children components are not attending to this stagger
-            transition: {
-                staggerChildren: 0.1, // Delay between each child animation
-            },
-        },
-        hidden: { opacity: 0 },
-    };
-
     return (
-        <motion.div
-            className="lettersOrSpaces"
-            variants={containerVariants}
-            initial={"hidden"}
-            animate={"visible"}
-        >
+        <motion.div className="lettersOrSpaces">
             {lettersOrSpaces.map((l, ix) => (
                 // key needs to change when letter becomes non-null, and should be distinct per occurrence
                 <LetterOrSpace key={l + "_at_" + ix} letterOrSpace={l} />
@@ -39,11 +23,25 @@ export function LetterOrSpace({
     letterOrSpace: string | null;
 }) {
     const itemVariants = {
-        visible: { opacity: 1, y: 0 },
         hidden: { opacity: 0, y: -100 },
+        visible: (custom: number) => ({
+            y: 0,
+            opacity: 1,
+            //TODO: newly mounted children components are not attending to this stagger
+            transition: {
+                delay: custom, // Delay between each child animation
+            },
+        }),
     };
     return (
-        <motion.div variants={itemVariants} className="letterOrSpace">
+        <motion.div
+            custom={Math.random() * 0.3}
+            variants={itemVariants}
+            className="letterOrSpace"
+            initial={"hidden"}
+            animate={"visible"}
+            exit={"hidden"}
+        >
             {letterOrSpace}
         </motion.div>
     );

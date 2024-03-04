@@ -105,7 +105,9 @@ body {
     gap: 1rem;
 }
 .letterOrSpace {
-    width: 1.5rem;
+    /* width: 1.5rem; */
+    display: grid;
+    place-items: center;
 }
 
 .letterButtons {

@@ -7,7 +7,9 @@ import { StartNewGameButton } from "./StartNewGameButton.tsx";
 
 export function HangmanGame() {
     //tracked state
-    const [wordToGuess, setWordToGuess] = useState(sample(wordList)!);
+    const firstWord = sample(["swimming", "swimsuit", "mississippi"]); //sample(wordList)!
+    const [wordToGuess, setWordToGuess] = useState(firstWord);
+
     const [guessedLetters, setGuessedLetters] = useState([] as string[]);
 
     //derived state
