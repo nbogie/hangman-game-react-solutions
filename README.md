@@ -2,6 +2,8 @@
 
 This branch has some animation with framer-motion for fun. There are no framer-motion best-practices here, though.
 
+[live](https://animation-with-framer-motion--hangman-game-solution.netlify.app/)
+
 ### credits
 
 [word list source - https://github.com/openethereum/wordlist/](https://github.com/openethereum/wordlist/blob/master/res/wordlist.txt)
