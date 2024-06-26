@@ -14,6 +14,7 @@ export function LetterButtons({
                     className="letterButton"
                     disabled={guessedLetters.includes(letter)}
                     onClick={() => handleClickButton(letter)}
+                    data-testid={`letter-button-${letter}`}
                     key={letter}
                 >
                     {letter}
