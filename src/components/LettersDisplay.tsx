@@ -4,5 +4,9 @@ export function LettersDisplay({
     lettersOrNulls: (null | string)[];
 }) {
     const lettersOrSpaces = lettersOrNulls.map((l) => (l === null ? "_" : l));
-    return <div className="letters">{lettersOrSpaces.join(" ")}</div>;
+    return (
+        <div className="letters" data-testid="letter-board">
+            {lettersOrSpaces.join(" ")}
+        </div>
+    );
 }
