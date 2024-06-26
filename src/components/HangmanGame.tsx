@@ -1,5 +1,5 @@
 import { sample } from "lodash";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { wordList } from "../data/wordList.ts";
 import { LetterButtons } from "./LetterButtons.tsx";
 import { LettersDisplay } from "./LettersDisplay.tsx";
@@ -7,8 +7,13 @@ import { StartNewGameButton } from "./StartNewGameButton.tsx";
 
 export function HangmanGame() {
     //tracked state
-    const [wordToGuess, setWordToGuess] = useState(sample(wordList)!);
+    //wordToGuess will be replaced during an effect at the end of first render.
+    const [wordToGuess, setWordToGuess] = useState("start");
     const [guessedLetters, setGuessedLetters] = useState([] as string[]);
+
+    useEffect(() => {
+        setStartingWordBasedOnQueryParamOrRandom();
+    }, []);
 
     //derived state
     const lettersToDisplay = calcLettersToDisplay(wordToGuess, guessedLetters);
@@ -40,6 +45,17 @@ export function HangmanGame() {
         setGuessedLetters([...guessedLetters, letter]);
     }
 
+    function setStartingWordBasedOnQueryParamOrRandom() {
+        //if the page has been loaded with ~testWord=whatever, use that value.  else, pick at random.
+        const urlParams = new URLSearchParams(window.location.search);
+        const testWord = urlParams.get("testWord");
+        if (testWord) {
+            setWordToGuess(testWord);
+        } else {
+            setWordToGuess(sample(wordList)!);
+        }
+    }
+
     //build the UI
     return (
         <div className="hangmanGame">
@@ -49,14 +65,21 @@ export function HangmanGame() {
 
             {winState === "loss" && (
                 <>
-                    <div>You lose! Too many misses.</div>
+                    <div data-testid="loss-message">
+                        You lose! Too many misses.
+                    </div>
                     <LettersDisplay lettersOrNulls={wordToGuess.split("")} />
                 </>
             )}
 
-            {winState === "win" && <div>You win!</div>}
+            {winState === "win" && (
+                <div data-testid="win-message">You win!</div>
+            )}
 
-            <div>Number of misses: {countOfMisses}</div>
+            <div>
+                Number of misses:{" "}
+                <span data-testid="miss-count">{countOfMisses}</span>
+            </div>
 
             <LetterButtons
                 guessedLetters={guessedLetters}
