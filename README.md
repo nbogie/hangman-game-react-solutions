@@ -11,7 +11,7 @@ Don't look at this until you have written a hangman app and tried to break it in
 
 ### getting started
 
-Try cloning the project, running yarn running yarn dev, and if it works, making some small edits.  
+Try cloning the project, installing with yarn, running `yarn dev`, and if it all works, making some small edits.  Then back off and take your time to READ the code.
 
 ### two branches
 There are two branches.  Ignore the animation one - animation is not easy to think about in React.  My basic solution is in main branch.
